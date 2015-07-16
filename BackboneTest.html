@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="//cdn.bootcss.com/backbone.js/1.2.1/backbone-min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="content">
+			<h1>Hello!</h1>
+			<div id="user-card"></div>
+			<ul id="band-wrapper"></ul>
+		</div>
+	</div>
+</body>
+<script>
+	//创建模型
+	var Fruit = Backbone.Model.extend({});
+	//创建模型新实例
+	var apple = new Fruit({
+		type: 'apple',
+		color: 'red',
+		condition: 'shiny'
+	});
+	apple.set("condition", "bruised");
+	apple.set({"type":"banana", "color":"yellow"});
+	console.log("color: " + apple.get("color"));
+	//创建计算属性
+	var Fruit = Backbone.Model.extend({
+		description: function(){
+			return this.get("color") + ", " + this.get("condition") + " " + this.get("type");
+		}
+	});
+	var apple = new Fruit({type: 'apple', color: 'red', condition: 'shiny'});
+	console.log("description(): " + apple.description());
+	//设置默认值
+	var Fruit = Backbone.Model.extend({
+		defaults: {
+			condition:"perfect"
+		}
+	});
+	var apple = new Fruit({type: 'apple', color: 'red'});
+	console.log("condition: " + apple.get("condition"));
+	//使用初始化函数
+	var Fruit = Backbone.Model.extend({
+		initialize: function(){
+			console.log("Fruit model initialized.")
+		}
+	});
+	var apple = new Fruit({type: 'apple', color: 'red', condition: 'shiny'});
+	//Backbone事件
+	//1 把事件绑定到模型
+	var Fruit = Backbone.Model.extend({
+		initialize:function(){
+			this.on("add", function(){
+				console.log("Fruit added - " + this.get("type"));
+			});
+		}
+	});
+	//2 追踪模型变化
+	var Fruit = Backbone.Model.extend({
+		initialize:function(){
+			this.on("change", function(){
+				console.log("Valuse for this model have changed.");
+			});
+		}
+	});
+	var Fruit = Backbone.Model.extend({
+		initialize:function(){//追踪单个属性变化
+			this.on("change:condition", function(){
+				console.log("Valus of condition for this model have changed.");
+			});
+		}
+	});
+	//模型的校验（测试失败）
+	var Fruit = Backbone.Model.extend({
+		initialize:function(){
+			this.on("error", function(model, error){
+				console.log(error);
+			});
+		},
+		validate:function(options){
+			if(options.quantity && !_.isNumber(options.quantity)){
+				return "Quantity must be a number.";
+			}
+		}
+	});
+	var apple = new Fruit({name:"apple", quantity:"a bunch"});
+	apple.save();
+	//创建集合
+	var Fruit = Backbone.Model.extend({});
+	var Fruits = Backbone.Collection.extend({
+		model:Fruit
+	});
+	var fruitbowl = new Fruits({type:"apple", color:"red"});
+	fruitbowl.add({type:"banana", color:"yellow"});
+	//创建集合事件
+	var Fruit = Backbone.Model.extend({});
+	var Fruits = Backbone.Collection.extend({
+		model:Fruit,
+		initialize:function(){
+			this.on("add", function(){
+				console.log("New fruit added.");
+			});
+			this.on("remove", function(){
+				console.log("Fruit removed.");
+			});
+		}
+	});
+	//创建视图，使用渲染函数
+	var FruitView = Backbone.View.extend({
+		el:"#my-element",
+		initialize:function(){
+			this.render();
+		},
+		render:function(){
+			this.$el.html("Markup here.");
+			return this;
+		}
+	});
+	var appleView = new FruitView({
+		model:apple
+	});
+	//渲染模型
+	var User = Backbone.Model.extend({});
+	var user = new User({
+		username:"jonraasch",
+		displayName:"Jon Raasch",
+		bio:"Some nerd"
+	});
+	var UserView = Backbone.View.extend({
+		el:"#user-card",
+		initialize:function(){ this.render(); },
+		render:function(){
+			var $card = $("<a href='/users/" + this.model.get("username") + "'>");
+			var $name = $("<h1>" + this.model.get("displayName") + "</h1>").appendTo($card);
+			var $bio = $("<p>" + this.model.get("bio") + "</p>").appendTo($card);
+			this.$el.html($card);
+			return this;
+		}
+	});
+	var userView = new UserView({ model:user });
+	//创建新的视图元素
+	var MyView = Backbone.View.extend({
+		tagName:"li",
+		className:"container list-item",
+		id:"my-view-wrapper"
+	});
+	var myView = new MyView;
+	//使用嵌套视图
+	var Band = {};
+	Band.Member = Backbone.Model.extend({});
+	Band.Members = Backbone.Collection.extend({
+		model:Band.Member
+	});
+	var band = new Band.Members([
+		{name:"John"}, {name:"Paul"}, {name:"George"}, {name:"Ringo"}
+	]);
+	//1 为每个列表条目创建视图
+	Band.Member.View = Backbone.View.extend({
+		tagName:"li",
+		render:function(){
+			this.$el.text(this.model.get("name"));
+			//将新的列表项追加到父视图的列表中
+			this.parentView.$el.append(this.$el);
+			return this;
+		}
+	});
+	//2 为列表创建一个父视图
+	Band.Members.View = Backbone.View.extend({
+		el:"#band-wrapper",
+		initialize:function(){
+			_.bindAll(this, "render");//跟渲染函数分享this上下文
+			//4 追踪集合中的变化
+			this.collection.on("change", this.render);
+			this.collection.on("add", this.render);
+			this.collection.on("remove", this.render);
+			this.render(); 
+		},
+		render:function(){
+			this.$el.empty();//清空视图元素（imp）
+			var thisView = this;//进入循环前保留当前的this，因为下面会覆盖新的this（imp）
+			this.collection.each(function(bandMember){//此处collection为下述bandView中定义的变量
+				var bandMemberView = new Band.Member.View({
+					model:bandMember
+				});
+				//3 连接父视图和子视图
+				bandMemberView.parentView = thisView;
+				bandMemberView.render();
+			});
+			return this;
+		}
+	});
+	var bandView = new Band.Members.View({
+		collection:band
+	});
+	band.add({name:"Yoko"});
+	//
+	
+	
+	
+	
+	
+</script>
+</html>

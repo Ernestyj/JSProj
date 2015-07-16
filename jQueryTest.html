@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+	<p>p1</p>
+	<p id="p2">p2</p>
+	<button id="clickme">Click me</button><hr />
+	
+	<button id="toggle">Toggle</button>
+	<button id="to">To</button>
+	<div id="div1">Click</div>
+	<div id="div2" style="display: none;">Hello world</div>
+	<div id="div3"></div><hr />
+	
+	<button id="down">Slide down</button>
+	<button id="up">Slide up</button><hr />
+	
+	<p id="text">Hello world! Hello world! Hello world!</p>
+	<button id="btn1">CSS test</button><hr />
+	
+	<button id="btn2">HTML test</button>
+	<p><input type="text" id="it" value="Hi!"></p><hr />
+	
+	<p id="p3">Hi, beauty!</p>
+	<a id="a1" href="http://www.baidu.com">Change Link</a>
+	<p id="p4">Hi, beauty!</p>
+	<button id="btn3">Setting</button><hr />
+	
+	<p id="p5">(Hi, Geek!)</p>
+	<button id="btn4">Append, Prepend, After, Before</button>
+	<button id="btn5">3 way append</button><hr />
+	
+	<div id="div6" style="border: 2px solid red;">
+		<p id="p6">Hi, boy!</p>
+		<p id="p7">Hi, boy!</p>
+	</div>
+	<button id="btn6">Remove</button>
+	<button id="btn7">Empty</button><hr />
+	
+	<div id="div8"></div>
+	<button id="btn8">CSS setting</button><hr />
+	
+	<div id="div9" style="width: 500px;height: 300px;border: 3px solid royalblue;">div1
+		<div id="div10" class="bd" style="width: 400px;height: 250px;margin-top: 10px;margin-left: 10px;border: 3px solid royalblue;">div2
+			<p style="margin: 10px;border: 3px solid royalblue;">
+				<a>Hello</a>
+			</p>
+			<h3>h3</h3>
+			<h4>h4</h3>
+			<h5>h5</h3>
+			<h6>h6</h3>
+		</div>
+	</div>
+	<button id="btn9">Traverse down(children, find)</button><br />
+	<button id="btn10">Traverse up(parent, parents, parentUntil)</button><br />
+	<button id="btn11">Traverse level(siblings, next, nextAll, nextUntil, prev, preAll, preUntil)</button><hr />
+	
+	<div><p>div0</p></div>
+	<div><p class="pclass">div1</p></div>
+	<div><p>div2</p></div>
+	<div><a>div3</a></div>
+	<button id="btn12">Filter level(first, last, eq, filter, not)</button><hr />
+	
+</body>
+<style>
+div{
+	background: #98CF71;
+	width: 100px;
+	height: 100px;
+	margin: 2px;
+	padding: 10px;
+	border: 5px, solid, greenyellow;
+}
+.bd *{
+	display: block; border: 2px solid royalblue;
+}
+</style>
+<script>
+	$("div").click(function(){
+		$(this).hide(2000, function(){
+			$(this).remove();
+		});
+	});
+	$(document).ready(function(){
+		$("#clickme").click(function(){
+			$("#p2").toggle(1000);
+		});
+		$("#toggle").on("click", function(){
+			$("#div1").fadeToggle(1000);
+			$("#div2").fadeToggle(1000);
+			$("#div3").fadeToggle(1000);
+		});
+		$("#to").on("click", function(){
+			$("#div1").fadeTo(1000, 0.2);
+			$("#div2").fadeTo(1000, 0.5);
+			$("#div3").fadeTo(1000, 1.0);
+		});
+		$("#down").on("click", function(){
+			$("#div2").slideDown(1000);
+		});
+		$("#up").on("click", function(){
+			$("#div2").slideUp(1000);
+		});
+		$("#btn1").click(function(){
+			$("p").css("color", "blue").slideUp(1000).slideDown(1000);
+		});
+		$("#btn2").click(function(){
+			alert($("#it").val());
+			alert($("#it").attr("type"));
+		});
+		$("#btn3").click(function(){
+			$("#p3").html("<a href='http://www.baidu.com'>Hello!</a>");
+			$("#a1").attr({
+				"href":"http://www.bing.com", 
+				"title":"bing"
+			});
+			$("#p4").text(function(newS, oldS){
+				return "(Old: " + oldS + ", New: " + newS + ")";
+			});
+		});
+		$("#btn4").click(function(){
+			$("#p5").append(" Append contents.");
+			$("#p5").prepend("Prepend contents. ");
+			$("#p5").before("Before. ");
+			$("#p5").after(" After.");
+		});
+		$("#btn5").on("click", appendText);
+		$("#btn6").click(function(){
+			$("#div6").remove();
+		});
+		$("#btn7").click(function(){
+			$("#div6").empty();
+		});
+		$("#btn8").click(function(){
+			$("#div8").css({
+				width:"50px", height:"50px", backgroundColor:"green", border:"5px solid blue"
+			});
+		});
+		$("#btn9").click(function(){
+			$("#div9").children("a").css({border:"1px solid red"});
+			$("#div9").find("a").css({border:"1px solid red"});
+		});
+		$("#btn10").click(function(){
+//			$("p").parent().css({border:"3px solid red"});
+//			$("p").parents().css({border:"3px solid red"});
+			$("a").parentsUntil("#div10").css({border:"3px solid red"});
+		});
+		$("#btn11").click(function(){
+//			$("h4").siblings().css({border:"1px solid red"});
+//			$("h4").next().css({border:"1px solid red"});
+//			$("h4").nextAll().css({border:"1px solid red"});
+//			$("h4").nextUntil("h6").css({border:"1px solid red"});
+			$("h4").siblings().css({border:"1px solid red"});
+		});
+		$("#btn12").click(function(){
+//			$("div p").first().css("background-color", "red");
+//			$("div p").last().css("background-color", "red");
+//			$("div p").eq(4).css("background-color", "red");
+//			$("div p").filter("p").css("background-color", "red");
+			$("div p").not(".pclass").css("background-color", "red");
+		});
+	});
+	function appendText(){
+		var text1 = "<p>Eugene1</p>";
+		var text2 = $("<p></p>").text("Eugene2");
+		var text3 = document.createElement("p");
+		text3.innerHTML = "Eugene3";
+		$("body").append(text1, text2, text3);
+	}
+</script>
+</html>

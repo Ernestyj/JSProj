@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="//cdn.bootcss.com/backbone.js/1.2.1/backbone-min.js"></script>
+</head>
+<body>
+	<div id="user-card"></div>
+</body>
+<script type="text/template" id="user-template">
+	<a href="/users/<%=username%>">
+		<h1><%=displayName%></h1>
+		<p><%=bio%></p>
+	</a>
+</script>
+<script>
+	var User = Backbone.Model.extend({});
+	var user = new User({
+		username:"jonraasch",
+		displayName:"Jon Raasch",
+		bio:"Some nerd"
+	});
+	var UserView = Backbone.View.extend({
+		el:"#user-card",
+		template:_.template($("#user-template").text()),
+		initialize:function(){ 
+			this.model.on("change", this.render, this);
+			this.render(); 
+		},
+		render:function(){
+			var compiled = this.template(this.model.toJSON());
+			this.$el.html(compiled);
+			console.log(compiled);
+			return this;
+		}
+	});
+	var userView = new UserView({ model:user });
+	user.set("bio", "Doctor");
+</script>
+</html>

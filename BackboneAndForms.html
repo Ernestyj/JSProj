@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="//cdn.bootcss.com/backbone.js/1.2.1/backbone-min.js"></script>
+</head>
+<body>
+	<div id="signup-form-wrapper"></div>
+</body>
+<script type="text/template" id="form-template">
+	<%var displayField = function(fieldKey, fieldValue, displayName, inputType){
+		if(typeof(inputType) === "undefined") inputType = "text" %>
+		<fieldset>
+			<label for="<%=fieldKey%>"><%=displayName%>: </label>
+			<input type="<%inputType%>" name="<%=fieldKey%>" id="<%=fieldKey%>" value="<%=fieldValue%>" 
+				<%=invalid[fieldKey]?"class='error'":""%> />
+			<%if(invalid[fieldKey]){%>
+				<span class="error-message"><%=invalid[fieldKey]%></span>
+			<%}%>
+		</fieldset>
+	<%}%>
+	<form method="POST" action="my-api.php">
+		<%displayField("name", name, "Name");%>
+		<%displayField("email", email, "Email", "email");%>
+		<%displayField("username", username, "Username");%>
+		<%displayField("password", password, "Password", "password");%>
+		<%displayField("passwordConf", passwordConf, "Confirm Password", "password");%>
+		<fieldset>
+			<input type="submit" />
+		</fieldset>
+	</form>
+</script>
+<script type="text/javascript">
+	//部分测试失败（表单验证部分失效）
+	var User = Backbone.Model.extend({
+		defaults: {name:"", email:"", username:"", password:"", passwordConf:""},
+		initialize:function(){
+			//配一个子模型存放无效的输入域
+			this.set("invalid", new Invalid);
+		}
+	});
+	var Invalid = Backbone.Model.extend({});
+	var user = new User;
+	var SignupView = Backbone.View.extend({
+		el:"#signup-form-wrapper",
+		template:_.template($("#form-template").text()),
+		events:{
+			"change iput":"inputChange",
+			"submit form":"saveForm"
+		},
+		initialize:function(){
+			_.bindAll(this, "validateForm", "inputChange", "saveForm");
+			this.render();
+		},
+		render:function(){
+			var modelData = this.model.toJSON();
+			modelData.invalid = modelData.invalid.toJSON();
+			this.$el.html(this.template(modelData));
+			return this;
+		},
+		validateForm:function(checkRequired){
+			var data = this.model.toJSON();
+			data.invalid = data.invalid.toJSON();
+			var requiredMsg = "Required field";
+			var emailRegex = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+			if(data.email.length && !data.email.match(emailRegex)){
+				this.model.get("invalid").set("email", "Must provide a valid email.")
+			}else{
+				if(data.invalid.email != requiredMsg){//不是必填项则移除
+					this.model.get("invalid").unset("email");
+				}
+			}
+			if(data.password.length && !data.passwordConf.length && data.password != data.passwordConf){
+				this.model.get("invalid").set("password", "Passwords don't match");
+				this.model.get("invalid").set("passwordConf", "Passwords don't match");
+			}else{
+				if(data.invalid.password != requiredMsg) this.model.get("invalid").unset("password");
+				if(data.invalid.passwordConf != requiredMsg) this.model.get("invalid").unset("passwordConf");
+			}
+			if(checkRequired){//检查必填项
+				_.each(data, function(value, key){
+					if(key == "invalid") return false;//检查invalid模型之外的所有东西
+					if(!value.length) this.model.get("invalid").set(key, requiredMsg);//输入域为空，则添加到invalid模型
+					else{
+						if(data.invalid[key] == requiredMsg) this.model.get("invalid").unset(key);
+					}
+				}, this);
+			}
+			if(_.size(this.model.get("invalid").toJSON())) return false;//如果有invalid的输入域，返回false
+			else return true;
+		},
+		inputChange:function(e){
+			var $input = $(e.target);
+			var inputName = $input.attr("name");
+			this.model.set(inputName, $input.val());
+			if(!this.validateForm(false)) this.render();
+		},
+		saveForm:function(e){
+			e.preventDefault();
+			if(this.validateForm(true)){
+				this.model.url = this.$el.find("form").attr("action");
+				var data = this.model.toJSON();
+				delete data.invalid;
+				delete data.passwordConf;
+				this.model.save(data);
+			}else this.render();
+		}
+	});
+	var signupView = new SignupView({model:user});
+	
+	
+	
+</script>
+</html>
