@@ -14,6 +14,7 @@
 			<div id="user-card"></div>
 			<ul id="band-wrapper"></ul>
 		</div>
+		<a href="#settings">Settings</a>
 	</div>
 </body>
 <script>
@@ -198,9 +199,19 @@
 		collection:band
 	});
 	band.add({name:"Yoko"});
-	//
-	
-	
+	//设置路由控制器
+	var Workspace = Backbone.Router.extend({
+		routes:{
+			"settings":"settings", "help":"help"
+		},
+		settings:function(){ console.log("Setting init"); },
+		help:function(){ console.log("Help init"); }
+	});
+	$(function(){//设置历史记录API，使用jQuery解决IE兼容性问题
+		Backbone.history.start();
+	});
+//	window.location.hash = "settings";//手动激活
+	Backbone.history.navigate("settings", {trigger:true, replace:true});//激活锚点（导航）
 	
 	
 	

@@ -5,6 +5,8 @@
 	<title></title>
 	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 	<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	
+	<script src="js/bmob-min.js"></script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -31,12 +33,58 @@ $(document).ready(function(){
 	$("#send").click(function(){
 		var username = $("input[name=username]").attr("value");
 		var message = $("input[name=message]").attr("value");
-		console.log("username: " + username);$.ajax({
+		console.log("username: " + username);
+		$.ajax({
 			type:"post",
-			url:"",
-			async:true
+			url:"https://api.bmob.cn/1/classes/MessageBoard",
+			async:true,
+			headers:{
+				"X-Bmob-Application-Id":"b6216080026d5d0457b2d9cd7281d3b8",
+				"X-Bmob-REST-API-Key":"34e67b5d8cb54442984ed38dfce84d85"
+			},
+			contentType:"application/json",
+			dataType:"JSONP",
+			data:JSON.stringify({
+				"username":username, "message":message
+			}),
+			success:function(){
+				console.log("sent");
+				getMessages();
+			},
+			error:function(){
+				console.log("error");
+			}
 		});
 	});
 });
+function getMessages(){
+	$.ajax({	
+		type:"get",
+		url:"https://api.bmob.cn/1/classes/MessageBoard",
+		async:true,
+		headers:{
+				"X-Bmob-Application-Id":"b6216080026d5d0457b2d9cd7281d3b8",
+				"X-Bmob-REST-API-Key":"34e67b5d8cb54442984ed38dfce84d85"
+		},
+		contentType:"application/json",
+//		dataType:"JSONP",
+		success:function(data){
+			console.log("get");
+			updateView(data);
+		},
+		error:function(){
+			console.log("error");
+		}
+	});
+}
+function updateView(messages){
+	var tableBody = $(".table tbody");
+	tableBody.html("");
+	$.each(messages.results, function(index, value) {
+		var trEl = $("<tr><td>" + value.username + "</td><td>" + value.message + "</td></tr>");
+		tableBody.append(trEl);
+	});
+	console.log("Messages: " + messages);
+}
 </script>
 </html>
