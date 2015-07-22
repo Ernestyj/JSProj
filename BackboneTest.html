@@ -210,8 +210,8 @@
 	$(function(){//设置历史记录API，使用jQuery解决IE兼容性问题
 		Backbone.history.start();
 	});
-//	window.location.hash = "settings";//手动激活
-	Backbone.history.navigate("settings", {trigger:true, replace:true});//激活锚点（导航）
+	window.location.hash = "settings";//手动激活
+//	Backbone.history.navigate("settings", {trigger:true, replace:true});//激活锚点（导航）
 	
 	
 	

@@ -28,6 +28,7 @@
 	</div>
 </body>
 <script>
+//此处采用Bmob REST API方式与jQuery.ajax结合无法解决跨域调用问题，测试失败
 $(document).ready(function(){
 	getMessages();
 	$("#send").click(function(){
@@ -43,7 +44,8 @@ $(document).ready(function(){
 				"X-Bmob-REST-API-Key":"34e67b5d8cb54442984ed38dfce84d85"
 			},
 			contentType:"application/json",
-			dataType:"JSONP",
+			crossDomain:true,//此处跨域调用失败
+			//dataType:"JSONP",
 			data:JSON.stringify({
 				"username":username, "message":message
 			}),
@@ -67,7 +69,8 @@ function getMessages(){
 				"X-Bmob-REST-API-Key":"34e67b5d8cb54442984ed38dfce84d85"
 		},
 		contentType:"application/json",
-//		dataType:"JSONP",
+		crossDomain:true,//此处跨域调用失败
+		//dataType:"JSONP",
 		success:function(data){
 			console.log("get");
 			updateView(data);
