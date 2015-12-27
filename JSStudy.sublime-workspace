@@ -14,6 +14,14 @@
 				"buffer_size": 365,
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "angularstudy/angular.html",
+			"settings":
+			{
+				"buffer_size": 429,
+				"line_ending": "Windows"
+			}
 		}
 	],
 	"build_system": "",
@@ -53,16 +61,17 @@
 	},
 	"expanded_folders":
 	[
-		"/E/ProgramData/JSStudy"
+		"/E/ProgramData/JSStudy",
+		"/E/ProgramData/JSStudy/angularstudy"
 	],
 	"file_history":
 	[
+		"/E/ProgramData/JSStudy/resources/js/controllers.js",
+		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Default (Windows).sublime-keymap",
 		"/E/ProgramData/JSStudy/angularstudy/angular.html",
 		"/E/ProgramData/JSStudy/angular.html",
 		"/E/Program Files win10/Sublime Text/Data/Packages/User/Default (Windows).sublime-keymap",
-		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Default (Windows).sublime-keymap",
 		"/E/Program Files win10/Sublime Text/Data/Packages/User/Preferences.sublime-settings",
-		"/E/ProgramData/JSStudy/resources/js/controllers.js",
 		"/E/Program Files win10/Sublime Text/Data/Packages/AutoFileName/autofilename.sublime-settings",
 		"/E/ProgramData/JSStudy/resources/js/controller.js",
 		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Preferences.sublime-settings",
@@ -89,6 +98,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"next_",
 			"ctrl+alt",
 			"f3",
 			"f12"
@@ -109,7 +119,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -125,8 +135,8 @@
 						"selection":
 						[
 							[
-								357,
-								357
+								17,
+								21
 							]
 						],
 						"settings":
@@ -135,16 +145,21 @@
 							"auto_complete": true,
 							"bh_regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -155,21 +170,16 @@
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -180,18 +190,108 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"open_with_edit": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "angularstudy/angular.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 429,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								411,
+								411
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
 							],
-							"open_with_edit": true,
+							"origin_encoding": "ASCII",
 							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
 						"translation.x": 0.0,
@@ -261,6 +361,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"E:\\ProgramData\\angular-phonecat\\angular-phonecat.sublime-workspace"
+			]
 		],
 		"width": 380.0
 	},
