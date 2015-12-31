@@ -3,23 +3,23 @@
 	{
 		"selected_items":
 		[
+			[
+				"co",
+				"color"
+			],
+			[
+				"star",
+				"startingEstimate"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "angularstudy/test.html",
-			"settings":
-			{
-				"buffer_size": 365,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "angularstudy/angular.html",
 			"settings":
 			{
-				"buffer_size": 429,
+				"buffer_size": 987,
 				"line_ending": "Windows"
 			}
 		}
@@ -62,19 +62,21 @@
 	"expanded_folders":
 	[
 		"/E/ProgramData/JSStudy",
-		"/E/ProgramData/JSStudy/angularstudy"
+		"/E/ProgramData/JSStudy/angularstudy",
+		"/E/ProgramData/JSStudy/resources"
 	],
 	"file_history":
 	[
-		"/E/ProgramData/JSStudy/resources/js/controllers.js",
-		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Default (Windows).sublime-keymap",
-		"/E/ProgramData/JSStudy/angularstudy/angular.html",
-		"/E/ProgramData/JSStudy/angular.html",
 		"/E/Program Files win10/Sublime Text/Data/Packages/User/Default (Windows).sublime-keymap",
+		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Default (Windows).sublime-keymap",
+		"/E/ProgramData/JSStudy/resources/js/controllers.js",
+		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Preferences.sublime-settings",
+		"/E/ProgramData/JSStudy/angularstudy/angular.html",
+		"/E/ProgramData/JSStudy/angularstudy/test.html",
+		"/E/ProgramData/JSStudy/angular.html",
 		"/E/Program Files win10/Sublime Text/Data/Packages/User/Preferences.sublime-settings",
 		"/E/Program Files win10/Sublime Text/Data/Packages/AutoFileName/autofilename.sublime-settings",
 		"/E/ProgramData/JSStudy/resources/js/controller.js",
-		"/E/Program Files win10/Sublime Text/Data/Packages/Default/Preferences.sublime-settings",
 		"/E/ProgramData/JSStudy/jq/jQueryCascade.html",
 		"/E/ProgramData/JSStudy/img/1.jpg",
 		"/E/ProgramData/JSStudy/img/3.jpg",
@@ -98,6 +100,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"controller",
+			"Controller",
+			"controller",
+			"Controller",
+			"controller",
+			"ctrl+d",
+			"replace",
+			"globle",
 			"next_",
 			"ctrl+alt",
 			"f3",
@@ -119,114 +129,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "angularstudy/test.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 365,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17,
-								21
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": true,
-							"bh_regions":
-							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"open_with_edit": true,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "angularstudy/angular.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 429,
+						"buffer_size": 987,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								411,
-								411
+								337,
+								337
 							]
 						],
 						"settings":
@@ -235,46 +155,41 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
@@ -285,17 +200,23 @@
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"origin_encoding": "ASCII",
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -343,7 +264,7 @@
 	"project": "JSStudy.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -385,7 +306,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 179.0,
+	"side_bar_width": 180.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
